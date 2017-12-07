@@ -94,6 +94,7 @@ open class MenuView: UIScrollView {
         setupRoundRectViewIfNeeded()
         constructor()
         layoutMenuItemViews()
+        setupLineViewIfNeeded()
         setupUnderlineViewIfNeeded()
     }
     
@@ -205,7 +206,18 @@ open class MenuView: UIScrollView {
             contentView.heightAnchor.constraint(equalTo: heightAnchor)
             ])
     }
-
+    
+    fileprivate func setupLineViewIfNeeded() {
+        guard case let .draw(height, color, horizontalPadding) = menuOptions.underLine else { return }
+        
+        let border = CALayer()
+        let width = contentView.bounds.width - horizontalPadding * 2
+        border.frame = CGRect(x: horizontalPadding, y: contentView.bounds.height - height, width: width, height: height)
+        border.backgroundColor = color.cgColor
+        
+        contentView.layer.addSublayer(border)
+    }
+    
     fileprivate func constructMenuItemViews(_ menuOptions: MenuViewCustomizable) {
         constructMenuItemViews({
             return MenuItemView(menuOptions: menuOptions, menuItemOptions: menuOptions.itemsOptions[$0], addDiveder: $1)

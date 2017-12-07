@@ -17,6 +17,7 @@ public protocol MenuViewCustomizable {
     var selectedItemCenter: Bool { get }
     var displayMode: MenuDisplayMode { get }
     var focusMode: MenuFocusMode { get }
+    var underLine: MenuUnderLine { get }
     var dummyItemViewsSet: Int { get }
     var menuPosition: MenuPosition { get }
     var dividerImage: UIImage? { get }
@@ -47,6 +48,9 @@ public extension MenuViewCustomizable {
     }
     var focusMode: MenuFocusMode {
         return .underline(height: 3, color: UIColor.blue, horizontalPadding: 0, verticalPadding: 0)
+    }
+    var underLine: MenuUnderLine {
+        return .none
     }
     var dummyItemViewsSet: Int {
         return 3
@@ -80,6 +84,11 @@ public enum MenuFocusMode {
     case none
     case underline(height: CGFloat, color: UIColor, horizontalPadding: CGFloat, verticalPadding: CGFloat)
     case roundRect(radius: CGFloat, horizontalPadding: CGFloat, verticalPadding: CGFloat, selectedColor: UIColor)
+}
+
+public enum MenuUnderLine {
+    case none
+    case draw(height: CGFloat, color: UIColor, horizontalPadding: CGFloat)
 }
 
 public enum MenuPosition {
