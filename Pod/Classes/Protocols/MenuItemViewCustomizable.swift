@@ -27,15 +27,15 @@ public enum MenuItemDisplayMode {
     case text(title: MenuItemText)
     case multilineText(title: MenuItemText, description: MenuItemText)
     case image(image: UIImage, selectedImage: UIImage?)
-    case custom(view: UIView)
+    case custom(view: UIView, title: MenuItemText)
 }
 
 public struct MenuItemText {
-    let text: String
-    let color: UIColor
-    let selectedColor: UIColor
-    let font: UIFont
-    let selectedFont: UIFont
+    public let text: String
+    public let color: UIColor
+    public let selectedColor: UIColor
+    public let font: UIFont
+    public let selectedFont: UIFont
     
     public init(text: String = "Menu",
                 color: UIColor = UIColor.lightGray,

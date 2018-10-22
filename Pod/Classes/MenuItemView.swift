@@ -47,7 +47,10 @@ open class MenuItemView: UIView {
                 descriptionWidthConstraint.constant = calculateLabelSize(descriptionLabel, maxWidth: maxWindowSize).width
             case let .image(image, selectedImage):
                 menuImageView.image = isSelected ? (selectedImage ?? image) : image
-            case .custom: break
+            case .custom(let view, let title):
+                if let label = view.subviews.first as? UILabel {
+                    updateLabel(label, text: title)
+                }
             }
         }
     }
@@ -93,7 +96,7 @@ open class MenuItemView: UIView {
                 self.setupImageView(image)
                 self.layoutImageView()
             })
-        case .custom(let view):
+        case .custom(let view, _):
             commonInit({
                 self.setupCustomView(view)
                 self.layoutCustomView()

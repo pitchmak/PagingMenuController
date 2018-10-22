@@ -11,7 +11,7 @@ import UIKit
 open class MenuView: UIScrollView {
     public fileprivate(set) var currentMenuItemView: MenuItemView!
     
-    internal fileprivate(set) var menuItemViews = [MenuItemView]()
+    public fileprivate(set) var menuItemViews = [MenuItemView]()
     internal var onMove: ((MenuMoveState) -> Void)?
     
     fileprivate var menuOptions: MenuViewCustomizable!
