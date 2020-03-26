@@ -51,6 +51,11 @@ open class MenuItemView: UIView {
                 if let label = view.subviews.first as? UILabel {
                     updateLabel(label, text: title)
                 }
+                if let stackView = view.subviews.first as? UIStackView {
+                    for label in stackView.arrangedSubviews where label is UILabel {
+                        updateLabel(label as! UILabel, text: title)
+                    }
+                }
             }
         }
     }
