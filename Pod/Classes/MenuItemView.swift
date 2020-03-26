@@ -47,14 +47,10 @@ open class MenuItemView: UIView {
                 descriptionWidthConstraint.constant = calculateLabelSize(descriptionLabel, maxWidth: maxWindowSize).width
             case let .image(image, selectedImage):
                 menuImageView.image = isSelected ? (selectedImage ?? image) : image
-            case .custom(let view, let title):
-                if let label = view.subviews.first as? UILabel {
+            case .custom(_, let title):
+                guard let view = customView else { return }
+                for case let label as UILabel in view.subviews {
                     updateLabel(label, text: title)
-                }
-                if let stackView = view.subviews.first as? UIStackView {
-                    for label in stackView.arrangedSubviews where label is UILabel {
-                        updateLabel(label as! UILabel, text: title)
-                    }
                 }
             }
         }
